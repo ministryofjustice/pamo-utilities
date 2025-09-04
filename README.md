@@ -1,6 +1,6 @@
-#Handy utility functions
+# Handy utility functions
 
-##fn_get_mean(df_data_table):
+## fn_get_mean(df_data_table):
 
     Function to calculate the mean of the values for each group in the passed df_data_table
     
