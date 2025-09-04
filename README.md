@@ -6,6 +6,7 @@
 ```python
 !pip install git+https://github.com/ministryofjustice/pamo-utilities.git
 from stats import stats_utils
+```
 
 ### fn_get_mean(df_data_table):
 
