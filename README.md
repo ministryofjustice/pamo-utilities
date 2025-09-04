@@ -8,7 +8,7 @@ Copy the file *pvenv_setup.py* into your project working folder and then run it 
 ```python
 pvenv_setup.py
 ```
-
+---
 ## Stats
 ---
 Some useful stats functions.
