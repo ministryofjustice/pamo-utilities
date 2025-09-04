@@ -1,7 +1,7 @@
 # Handy utility functions
 
-## Pvenv
 ---
+## Pvenv
 An automated way to create and use a virtual environment.  Uses the Poetry packaging tools.
 ### How to use
 Copy the file *pvenv_setup.py* into your project working folder and then run it from the command line
@@ -10,7 +10,6 @@ pvenv_setup.py
 ```
 ---
 ## Stats
----
 Some useful stats functions.
 ### How to use
 ```python
