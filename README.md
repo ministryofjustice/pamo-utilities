@@ -13,3 +13,45 @@
     Results dataframe with group columns, group_mean.  
     Data table dataframe returns the original data table with no changes made.
 
+## fn_get_median(df_data_table):
+
+    Function to calculate the median of the values for each group in the passed df_data_table
+    
+    Parameters:
+    df_data_table: a summary table of two columns.  
+        group: contains the group name/description
+        value: contains the value for the respective group.
+    
+    Return:
+    Results dataframe with columns group, group_median.  
+    Data table dataframe returns the original data table with an additional column showing which records form the group median.
+    Medians dataframe contains the median record/s.
+
+## fn_get_pay_gap(df_data_table, comparator_group):
+
+    Function to calculate the pay gap between a comparator group and all other groups in the passed df_data_table
+    In gender pay gap reporting the comparator group is male.
+    In ethnicity pay gap reporting the comparator group is white.
+    In disability pay gap reporting the comparator group is non-disabled.
+    
+    Parameters:
+    df_data_table: a summary table of two columns.  
+        group: contains the group name/description
+        value: contains the mean or median hourly pay rate for the respective group.
+    
+    Return:
+    Dataframe with columns group, hourly_rate, pay_gap.  
+    If mean hourly rates are used as input the pay gap will be the mean pay gap.
+    If median hourly rates are used as input the pay gap will be the median pay gap.
+
+## fn_get_quantiles(df_data, range_column, bin_count):
+
+    Function to group data in the passed df_data_table into quantiles
+    
+    Parameters:
+    df_data_table: table of data.
+    range_column: The column containing the numerical range that forms the basis of quantile grouping
+    bin_count: The number of quantiles the data should be grouped into
+    
+    Return:
+    Results dataframe with quantile number, record_count in each quantile, range minimum and range maximum in each quantile.  
