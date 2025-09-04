@@ -3,7 +3,7 @@ name = "pamo-utilities"
 version = "1.0"
 
 authors = [
-    { name = "MoJ", email = "" }
+    { name = "MoJ", email = "pamo@justice.gov.uk" }
 ]
 license = "MIT"
 readme = "README.md"
