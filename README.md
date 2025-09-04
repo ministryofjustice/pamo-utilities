@@ -2,6 +2,10 @@
 
 ## Stats
 ---
+### How to use
+'code' !pip install git+https://github.com/ministryofjustice/pamo-utilities.git
+'code' from stats import stats_utils
+
 ### fn_get_mean(df_data_table):
 
     Function to calculate the mean of the values for each group in the passed df_data_table
