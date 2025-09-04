@@ -1,6 +1,8 @@
 # Handy utility functions
 
-## fn_get_mean(df_data_table):
+## Stats
+---
+### fn_get_mean(df_data_table):
 
     Function to calculate the mean of the values for each group in the passed df_data_table
     
@@ -13,7 +15,7 @@
     Results dataframe with group columns, group_mean.  
     Data table dataframe returns the original data table with no changes made.
 
-## fn_get_median(df_data_table):
+### fn_get_median(df_data_table):
 
     Function to calculate the median of the values for each group in the passed df_data_table
     
@@ -27,7 +29,7 @@
     Data table dataframe returns the original data table with an additional column showing which records form the group median.
     Medians dataframe contains the median record/s.
 
-## fn_get_pay_gap(df_data_table, comparator_group):
+### fn_get_pay_gap(df_data_table, comparator_group):
 
     Function to calculate the pay gap between a comparator group and all other groups in the passed df_data_table
     In gender pay gap reporting the comparator group is male.
@@ -44,7 +46,7 @@
     If mean hourly rates are used as input the pay gap will be the mean pay gap.
     If median hourly rates are used as input the pay gap will be the median pay gap.
 
-## fn_get_quantiles(df_data, range_column, bin_count):
+### fn_get_quantiles(df_data, range_column, bin_count):
 
     Function to group data in the passed df_data_table into quantiles
     
@@ -55,3 +57,4 @@
     
     Return:
     Results dataframe with quantile number, record_count in each quantile, range minimum and range maximum in each quantile.  
+---
