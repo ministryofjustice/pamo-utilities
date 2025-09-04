@@ -1,5 +1,5 @@
 [project]
-name = "pamo-utilities"
+name = "pamo_utilities"
 version = "1.0"
 
 authors = [
