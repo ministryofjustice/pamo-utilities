@@ -16,3 +16,11 @@ dependencies = [
 [build-system]
 requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
+
+
+[tool.setuptools.packages.find]
+# Search only under src/
+where = ["src"]
+# Only include these package name patterns (match on *package names*, not paths)
+include = ["pvenv_setup*", "stats_utils*"]
+namespaces = true
