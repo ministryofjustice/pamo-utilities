@@ -7,15 +7,16 @@ An automated way to create and use a virtual environment.  Uses the Poetry packa
 Copy the file *pvenv_setup.py* into your project working folder and then run it from the command line, following the prompts.
 Commonly used packages are already included but further packages can be added by editing the script.
 ```python
-pvenv_setup.py
+python pvenv_setup.py
 ```
 ---
 ## Stats
 Some useful stats functions.
 ### How to use
 ```python
+The pamo-utilities should be installed automtaically by pvenv_setup but if this doesn't happen or if you don't want to use pvenve_setup you can install using the following Python code
 !pip install git+https://github.com/ministryofjustice/pamo-utilities.git
-from stats import stats_utils
+import stats_utils
 ```
 
 ### fn_get_mean(df_data_table):
