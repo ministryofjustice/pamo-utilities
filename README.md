@@ -13,7 +13,7 @@ python pvenv_setup.py
 ## Stats
 Some useful stats functions.
 ### How to use
-The pamo-utilities should be installed automtaically by pvenv_setup but if this doesn't happen or if you don't want to use pvenve_setup you can install using the following Python code
+The pamo-utilities should be installed automtaically by pvenv_setup but if this doesn't happen or if you don't want to use pvenv_setup you can install using the following Python code.
 ```python
 !pip install git+https://github.com/ministryofjustice/pamo-utilities.git
 ```
