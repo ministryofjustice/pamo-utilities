@@ -45,6 +45,8 @@ subprocess.run(["poetry", "add", "numpy"], check=True)
 subprocess.run(["poetry", "add", "pytest"], check=True)
 subprocess.run(["poetry", "add", "toml"], check=True)
 subprocess.run(["poetry", "add", "pydbtools"], check=True)
+# Install pamo-utilities
+subprocess.run([sys.executable, "-m", "pip", "install", "git+https://github.com/ministryofjustice/pamo-utilities.git"], check=True)
 
 # Activate the virtual environment
 print("\nActivating virtual environment...")
