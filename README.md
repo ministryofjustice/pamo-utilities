@@ -19,7 +19,7 @@ The pamo-utilities should be installed automtaically by pvenv_setup but if this 
 ```
 Once installed you can import the utilites as per the example below.
 ```python
-import stats_utils
+from stats_utils import stats_utils
 ```
 
 ### fn_get_mean(df_data_table):
