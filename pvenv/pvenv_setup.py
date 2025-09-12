@@ -27,11 +27,13 @@ def confirm_overwrite(path: Path) -> bool:
             print("Not overwriting.")
             return False
         print("Please enter 'y' or 'n'.")
-    
+
+# Install poetry
+subprocess.run(["pip", "install", "poetry"], check=True)
 
 # Initialize poetry in the current directory
 if confirm_overwrite(Path('pyproject.toml')):
-    subprocess.run(["poetry", "init", "--no-interaction"], check=True)
+    subprocess.run(["poetry", "init", "--python", ">=3.12,<4.0", "--no-interaction"], check=True)
 
 # Add dependencies - required packages
 subprocess.run(["poetry", "add", "ipykernel"], check=True)
