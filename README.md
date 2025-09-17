@@ -23,7 +23,7 @@ from stats_utils import stats_utils
 ```
 Then use the functions as per the example below.
 ```python
-df_out = stats_utils.fn_get_mean(df_in)
+df_out, df_in_returned = stats_utils.fn_get_mean(df_in)
 ```
 
 ### fn_get_mean(df_data_table):
