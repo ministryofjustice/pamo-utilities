@@ -130,24 +130,23 @@ def install_venv():
     subprocess.run(["poetry", "add", "toml"], check=True)
     subprocess.run(["poetry", "add", "pydbtools"], check=True)
     subprocess.run(["poetry", "add", "xlsxwriter"], check=True)
+    subprocess.run(["poetry", "add", "fsspec"], check=True)
+    subprocess.run(["poetry", "add", "s3fs"], check=True)
+    subprocess.run(["poetry", "add", "openpyxl"], check=True)
+    
+    
     # Install pamo-utilities
     subprocess.run([sys.executable, "-m", "pip", "install", "git+https://github.com/ministryofjustice/pamo-utilities.git"], check=True)
     # Install pamo-report-builder
     subprocess.run([sys.executable, "-m", "pip", "install", "git+https://github.com/ministryofjustice/pamo-report-builder.git"], check=True)
-    activate_venv()
+    install_jupyter_kernel()
 
-def activate_venv():
+def install_jupyter_kernel():
     """
-    Activate the poetry virtual environment.
+    Install a Jupyter kernel for the poetry virtual environment.
     Args: None.
     Returns: None.
     """
-    # Activate the virtual environment
-    print("\nActivating virtual environment...")
-    subprocess.run(["poetry", "env", "activate"], check=True)
-    
-    # Check working in virtual environment
-    subprocess.run(["poetry", "env", "info"], check=True)
     
     # Install kernel for use by Jupyter notebooks
     print(Fore.GREEN + "\nAdding Jupyter kernel...")
@@ -182,7 +181,7 @@ def initiate_pvenv_setup():
                 selected_folder = matching_folders[choice - 1]
                 print(f"You selected: {selected_folder}")
                 # Activate the virtual environment for the working folder
-                activate_venv()
+                install_jupyter_kernel()
          
             else:
                 print("Invalid selection.")
@@ -198,6 +197,17 @@ def initiate_pvenv_setup():
 if __name__ == "__main__":
     # Ensure folder name is appropriate and has no spaces or special characters in it other than hypen or underscore.
     initiate_pvenv_setup()
+
+    # Provide tip for user on how to activate the virtual environment
+    venv_path = subprocess.run(["poetry", "env", "info", "-p"], capture_output=True, text=True).stdout[:-1]
+    print(Fore.YELLOW + "\nActivate the virtual environment by running the command below:\n")
+    print("source " + venv_path + "/bin/activate\n\n")  
+    print("To subsequently deactivate the environment run the command: \n")
+    print("deactivate\n")
+    print(Style.RESET_ALL)
+    
+
+
 
 
 
