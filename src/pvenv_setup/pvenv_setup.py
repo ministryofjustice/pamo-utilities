@@ -133,12 +133,12 @@ def install_venv():
     subprocess.run(["poetry", "add", "fsspec"], check=True)
     subprocess.run(["poetry", "add", "s3fs"], check=True)
     subprocess.run(["poetry", "add", "openpyxl"], check=True)
-    
-    
+
     # Install pamo-utilities
-    subprocess.run([sys.executable, "-m", "pip", "install", "git+https://github.com/ministryofjustice/pamo-utilities.git"], check=True)
+    subprocess.run(["poetry", "add", "git+https://github.com/ministryofjustice/pamo-utilities.git"], check=True)
     # Install pamo-report-builder
-    subprocess.run([sys.executable, "-m", "pip", "install", "git+https://github.com/ministryofjustice/pamo-report-builder.git"], check=True)
+    subprocess.run(["poetry", "add", "git+https://github.com/ministryofjustice/pamo-report-builder.git"], check=True)
+    
     install_jupyter_kernel()
 
 def install_jupyter_kernel():
