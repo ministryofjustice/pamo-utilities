@@ -82,7 +82,7 @@ def fn_get_median(df_data_table):
 
     # Make dataframe of rows that make the median
     df_results_table = df_results_table.rename(columns={'value':'median_value'})
-    df_results_diff = df_data_table.merge(df_results_table, on='group', how='left')
+    df_results_diff = df_data_table.merge(df_results_table[['group', 'median_value']], on='group', how='left')
 
     # Calculate the deviation from median for each record
     df_results_diff['deviation'] = abs(df_results_diff.value - df_results_diff.median_value)
@@ -124,33 +124,34 @@ def fn_get_pay_gap(df_data_table, comparator_group):
         return None
         
     # Make sure range column only contains numeric values.  If not, warn user and return nothing.
+    df_data = df_data_table.copy()
     try:
-        df_data_table['value'] = pd.to_numeric(df_data_table['value'], errors='raise')
-        df_data_table['value'] = df_data_table['value'].astype(float)
+        df_data['value'] = pd.to_numeric(df_data['value'], errors='raise')
+        df_data['value'] = df_data['value'].astype(float)
     except:
         raise ValueError("ERROR - Value column contains non-numeric values.")
         return None
     
     # Get comparator record
-    df_comparator = df_data_table[df_data_table.group == comparator_group]
+    df_comparator = df_data[df_data.group == comparator_group]
     # Confirm only one record
     if df_comparator.shape[0] == 1:        
-        comparator_group_value = df_data_table[df_data_table.group == comparator_group]['value'].values[0]
-        df_data_table['pay_gap'] = np.nan
+        comparator_group_value = df_data[df_data.group == comparator_group]['value'].values[0]
+        df_data['pay_gap'] = np.nan
         # Loop through each group in the df_data_table and calculate the gap
         for row in df_data_table.itertuples():
             # Get value for the gap group
-            gap_group_value = df_data_table[df_data_table.group == row.group]['value'].values[0]
+            gap_group_value = df_data[df_data.group == row.group]['value'].values[0]
             # Calculate the pay gap
             pay_gap = round((comparator_group_value - gap_group_value) / comparator_group_value, 4)
             # Save the pay gap into the dataframe
-            mask = (df_data_table.group == row.group)
-            df_data_table.loc[mask, 'pay_gap'] = pay_gap
+            mask = (df_data.group == row.group)
+            df_data.loc[mask, 'pay_gap'] = pay_gap
     else:
         raise ValueError("ERROR - More than one record in data table relating to the specified comparator group.")
     
     # Return the dataframe with added pay gap column
-    return df_data_table
+    return df_data
 
 
 def fn_get_quantiles(df_data, range_column, bin_count):
