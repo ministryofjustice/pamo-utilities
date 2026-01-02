@@ -37,6 +37,9 @@ def install_kernel(kernel_name):
     kernel_name (str): Name of kernel to be installed.
     Returns: None
     """    
+    # Install poetry
+    subprocess.run(["pip", "install", "poetry"], check=True)
+    
     display_name = "ipyk_" + kernel_name
     # Installs a kernelspec for the current Python environment
     venv_path = subprocess.run(["poetry", "env", "info", "-p"], capture_output=True, text=True).stdout[:-1]
@@ -54,12 +57,12 @@ def install_kernel(kernel_name):
         )
     
     else:
-        msg = (
+        msg = (Fore.GREEN + 
             f"Kernel installed.\n"
             f"  Name:         {kernel_name}\n"
             f"  Display name: {display_name}\n"
             f"  Python:       {py}\n"
-            f"Tip: In JupyterLab, choose Kernel → Change Kernel → '{kernel_name}'."
+            f"Tip: In JupyterLab, choose Kernel → Change Kernel → '{kernel_name}'." + Style.RESET_ALL
         )
         print(msg)
 
@@ -149,7 +152,7 @@ def install_jupyter_kernel():
     """
     
     # Install kernel for use by Jupyter notebooks
-    print(Fore.GREEN + "\nAdding Jupyter kernel...")
+    print(Fore.GREEN + "\nAdding Jupyter kernel..." + Style.RESET_ALL)
     cwd = Path.cwd().resolve().name
     install_kernel("pvenv_" + cwd)
     print(Style.RESET_ALL)
@@ -205,10 +208,3 @@ if __name__ == "__main__":
     print("To subsequently deactivate the environment run the command: \n")
     print("deactivate\n")
     print(Style.RESET_ALL)
-    
-
-
-
-
-
-
