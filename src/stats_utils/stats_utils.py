@@ -39,8 +39,6 @@ def fn_get_mean(df_data_table):
     
     # Get mean for group
     df_results_table = df_data_table.groupby(group_columns).mean().reset_index()
-    # Round results to 2 dp
-    df_results_table.value = df_results_table.value.round(2)
     
     return df_results_table, df_data_table
 
