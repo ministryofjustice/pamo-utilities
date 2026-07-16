@@ -173,7 +173,7 @@ def fn_get_pay_gap(df_data_table, comparator_group):
     return df_data
 
 
-def fn_get_quantiles(df_data, range_column, bin_count):
+def fn_get_quantiles(df_data, range_column, bin_count=4):
     """
     Function to group data in the passed df_data_table into quantiles
     
@@ -231,6 +231,7 @@ def fn_get_pay_gap_quantiles(df_data, range_column, bin_count=4):
     """
     Cabinet Office compliant quantile calculation.
 
+    Function to group data in the passed df_data_table into quantiles
     Handles tied values fairly at quantile boundaries rather than
     arbitrarily splitting tied records.
 
