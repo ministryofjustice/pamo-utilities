@@ -45,54 +45,6 @@ def fn_get_mean(df_data_table):
 
     return df_results_table, df_data_table
     
-def fn_get_median_OLD(df_data_table):
-    """
-    Function to calculate the median of the values for each group in the passed df_data_table
-    
-    Parameters:
-    df_data_table: a summary table of two columns.  
-        group: contains the group name/description
-        value: contains the value for the respective group.
-    
-    Return:
-    Results dataframe with columns group, group_median.  
-    Data table dataframe returns the original data table with an additional column showing which records form the group median.
-    Medians dataframe contains the median record/s.
-    """   
-    
-    # Make sure group column exists
-    if not 'group' in df_data_table.columns:        
-        raise KeyError("ERROR - Group column missing")
-        return None
-        
-    # Make sure range column exists
-    if not 'value' in df_data_table.columns:        
-        raise KeyError("ERROR - Value column missing.")
-        return None
-                    
-    # Make sure range column only contains numeric values.  If not, warn user and return nothing.
-    try:
-        df_data_table['value'] = pd.to_numeric(df_data_table['value'], errors='raise')
-    except:
-        raise ValueError("ERROR - Value column contains non-numeric values.")
-        return None
-
-    # Get median for group
-    df_results_table = df_data_table.groupby(['group']).median().reset_index()
-
-    # Make dataframe of rows that make the median
-    df_results_table = df_results_table.rename(columns={'value':'median_value'})
-    df_results_diff = df_data_table.merge(df_results_table[['group', 'median_value']], on='group', how='left')
-
-    # Calculate the deviation from median for each record
-    df_results_diff['deviation'] = abs(df_results_diff.value - df_results_diff.median_value)
-    # Group by deviation and get minimum deviation for each group
-    df_medians = df_results_diff.groupby(['group'])[['deviation']].min().reset_index()
-    # Filter results to get just those on median by merging results
-    df_medians = df_results_diff.merge(df_medians, on=['group', 'deviation'], how='inner')
-    
-    return df_results_table, df_data_table, df_medians
-
 
 def fn_get_median(df_data_table):
     """
