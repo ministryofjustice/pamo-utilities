@@ -42,16 +42,18 @@ df_out, df_in_returned = stats_utils.fn_get_mean(df_in)
 ### fn_get_median(df_data_table):
 
     Function to calculate the median of the values for each group in the passed df_data_table
-    
+
     Parameters:
-    df_data_table: a summary table of two columns.  
+    df_data_table: a summary table of two columns.
         group: contains the group name/description
         value: contains the value for the respective group.
-    
+
     Return:
-    Results dataframe with columns group, group_median.  
-    Data table dataframe returns the original data table with an additional column showing which records form the group median.
-    Medians dataframe contains the median record/s.
+    Results dataframe with columns group, median_value.
+    Data table dataframe returns the original data table.
+    Medians dataframe contains the actual median record(s):
+        - one record for odd-sized groups
+        - two records for even-sized groups
 
 ### fn_get_pay_gap(df_data_table, comparator_group):
 
@@ -73,12 +75,53 @@ df_out, df_in_returned = stats_utils.fn_get_mean(df_in)
 ### fn_get_quantiles(df_data, range_column, bin_count):
 
     Function to group data in the passed df_data_table into quantiles
+    **This function is NOT Cabinet Office compliant** and gives unweighted boundary splits
     
-    Parameters:
-    df_data_table: table of data.
-    range_column: The column containing the numerical range that forms the basis of quantile grouping
-    bin_count: The number of quantiles the data should be grouped into
+    Parameters
+    ----------
+    df_data : pandas.DataFrame
+        Input data.
+
+    range_column : str
+        Numeric column used to determine quantiles.
+
+    bin_count : int
+        Number of quantiles required.
     
-    Return:
-    Results dataframe with quantile number, record_count in each quantile, range minimum and range maximum in each quantile.  
+    Returns
+    -------
+    pandas.DataFrame
+
+    quantile
+    record_count
+    range_min
+    range_max 
+
+### fn_get_pay_gap_quantiles(df_data, range_column, bin_count=4)
+
+    Cabinet Office compliant quantile calculation
+
+    Function to group data in the passed df_data_table into quantiles
+    Handles tied values fairly at quantile boundaries rather than
+    arbitrarily splitting tied records.
+
+    Parameters
+    ----------
+    df_data : pandas.DataFrame
+        Input data.
+
+    range_column : str
+        Numeric column used to determine quantiles.
+
+    bin_count : int
+        Number of quantiles required.
+
+    Returns
+    -------
+    pandas.DataFrame
+
+    quantile
+    record_count
+    range_min
+    range_max
 ---
