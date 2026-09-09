@@ -21,7 +21,8 @@ def get_venv_for_cwd():
     
     # Check if the directory exists
     if not os.path.exists(poetry_cache_path):
-        print("Poetry virtualenvs directory not found. You may need to reinstall the virtual environment.")
+        print("Poetry virtualenvs directory not found. Making empty folder for virtual environment install.")
+        os.makedirs(poetry_cache_path, exist_ok = True)
     else:
         # Search for folders containing the current directory name
         matching_folders = [
